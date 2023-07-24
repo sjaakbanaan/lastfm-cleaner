@@ -9,7 +9,7 @@ Node.js: Download and Install Node.js
 Installation
 Clone the repository to your local machine:
 ```
-git clone https://github.com/your-username/lastfm-scrobble-remover.git
+git clone https://github.com/sjaakbanaan/lastfm-scrobble-remover.git
 ```
 Change to the project's directory:
 ```
