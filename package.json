@@ -1,7 +1,7 @@
 {
-  "name": "lastfm-cleaner",
+  "name": "lastfm-scrobble-remover",
   "description": "",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
-    "dotenv": "^16.3.1",
-    "node-fetch": "^3.3.1"
+    "dotenv": "^16.3.1"
   }
 }
