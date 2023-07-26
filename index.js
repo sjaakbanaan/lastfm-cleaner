@@ -70,7 +70,11 @@ async function makeRequests() {
     console.log(`Total scrobbles deleted: ${totalScrobblesDeleted}`);
   } catch (error) {
     // Handle errors if any
-    console.error('Error occurred:', error.response.status, error.response.data);
+    // Extract the content inside the error response data
+    const $ = cheerio.load(error.response.data);
+    const errorText = $('#summary p').text().trim();
+    
+    console.error(`${redText}Fatal error: ${errorText}${resetText}`);
   }
 }
 
