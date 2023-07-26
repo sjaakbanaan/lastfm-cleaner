@@ -1,4 +1,4 @@
-# Last.fm Scrobble Remover 1.2.1
+# Last.fm Scrobble Remover 1.2.2
 ## Overview
 
 The Last.fm Scrobble Deletion Script is a Node.js script that allows you to delete scrobbles from your Last.fm library for a list of artists. It uses the Last.fm API to perform the deletion, and you can specify the list of artists in a text file called `artists.txt`.
@@ -40,7 +40,7 @@ npm install
 ```
 5. Run the script using the following command:
 ```
-node index.js
+npm run start
 ```
 ## Script Behavior
 
