@@ -40,6 +40,9 @@ async function makeRequests() {
         },
       });
 
+      // Clean up artist name to display
+      const artistCleaned = artist.replace(/\+/g, ' ');
+
       // Extract the content inside the paragraph with class 'big-modal-progress'
       const $ = cheerio.load(response.data);
       const progressText = $('p.big-modal-progress').text().trim();
@@ -47,10 +50,9 @@ async function makeRequests() {
       // Extract the number from the progressText string
       const match = progressText.match(/(\d+)/);
       const scrobblesDeleted = match ? parseInt(match[1]) : 0;
-      // Clean up artist name to display
-      const artistCleaned = artist.replace(/\+/g, ' ');
-      displayHorizontalLine();
 
+      // Start the output:
+      displayHorizontalLine();
       // Handle the response, errors can be found in response.data
       if (scrobblesDeleted > 0) {
         console.log(`${scrobblesDeleted} scrobble${scrobblesDeleted > 0 ? 's' : ''} from ${artistCleaned} deleted ${greenText}succesfully!${resetText}`);
@@ -58,6 +60,7 @@ async function makeRequests() {
         console.log(`Deletion ${redText}failed${resetText} for ${artistCleaned}, nothing to delete.`);
       }
       displayHorizontalLine();
+
       // Update the total scrobbles deleted
       totalScrobblesDeleted += scrobblesDeleted;
 
@@ -66,14 +69,12 @@ async function makeRequests() {
       // Pause a little before making the next request
       await new Promise((resolve) => setTimeout(resolve, randomTimeout));
     }
-    // Display the total scrobbles deleted
+    // Close the output by displaying the total scrobbles deleted
     console.log(`Total scrobbles deleted: ${totalScrobblesDeleted}`);
   } catch (error) {
-    // Handle errors if any
-    // Extract the content inside the error response data
+    // Handle errors if any, extract the content inside the error response data
     const $ = cheerio.load(error.response.data);
     const errorText = $('#summary p').text().trim();
-    
     console.error(`${redText}Fatal error: ${errorText}${resetText}`);
   }
 }
