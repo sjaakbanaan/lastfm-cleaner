@@ -1,5 +1,5 @@
 # Last.fm Scrobble Remover 1.2.4
-<img width="675" alt="image" src="https://github.com/sjaakbanaan/lastfm-scrobble-remover/assets/2773301/4facdf43-943d-4029-83f4-2cb826e93547">
+![image](https://github.com/sjaakbanaan/lastfm-scrobble-remover/assets/2773301/551e412c-8f69-462a-9a4b-fd978a8ba2f4)
 
 ## Overview
 
