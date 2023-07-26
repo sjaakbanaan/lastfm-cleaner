@@ -1,58 +1,64 @@
-# Last.fm Scrobble Remover
+# Last.fm Scrobble Remover 1.2.0
+## Overview
 
-A Node.js script that allows you to remove scrobbles from Last.fm by looping over a list of artists.
+The Last.fm Scrobble Deletion Script is a Node.js script that allows you to delete scrobbles from your Last.fm library for a list of artists. It uses the Last.fm API to perform the deletion, and you can specify the list of artists in a text file called `artists.txt`.
 
 ## Prerequisites
-Before using this script, make sure you have the following installed on your machine:
 
-Node.js: Download and Install Node.js
-Installation
-Clone the repository to your local machine:
+Before running the script, make sure you have the following:
+
+1. Node.js installed on your system. You can download it from the official website: https://nodejs.org/
+
+2. Last.fm account with scrobbles you want to delete.
+
+3. The necessary environment variables to be set in the `.env` file. You can find these variables in your browser cookies after logging in to Last.fm:
+
+   - `USERNAME`: Your Last.fm username
+   - `CSRF_TOKEN`: The CSRF token from your Last.fm cookies
+   - `SESSION_ID`: The session ID from your Last.fm cookies
+
+## Usage
+
+1. Clone this repository to your local machine.
+
+2. Copy `.env-example` to `.env` in the root directory and update the environment variables with your Last.fm account information. The file should look like this:
 ```
-git clone https://github.com/sjaakbanaan/lastfm-scrobble-remover.git
+USERNAME=your_lastfm_username
+CSRF_TOKEN=your_csrf_token
+SESSION_ID=your_session_id
 ```
-Change to the project's directory:
+3. Create a `artists.txt` file in the root directory and add the list of artists you want to delete scrobbles for. Each artist should be on a new line, like this:
 ```
-cd lastfm-scrobble-remover
+Artist
+Artist+2
+Artist+3
+... (add more artists as needed)
 ```
-Install the required dependencies:
+4. Install the required dependencies by running the following command in the terminal:
 ```
 npm install
 ```
-## Configuration
-Copy the .env-example file to .env in the root directory of the project.
-
-Open your web browser and log in to your Last.fm account.
-While on Last.fm, use your browser's developer tools (usually accessed by pressing F12 or right-clicking and selecting "Inspect") to find the necessary cookies.
-
-Locate the csrftoken and sessionid cookies from Last.fm and copy their values.
-
-In the .env file, change the following lines and paste the values you copied from the cookies and your Last.fm username:
+5. Run the script using the following command:
 ```
-USERNAME=yourusername
-CSRF_TOKEN=YOUR_CSRF_TOKEN_VALUE
-SESSION_ID=YOUR_SESSION_ID_VALUE
+node index.js
 ```
-### Usage
-Update the ArtistList variable in the index.js file with the list of artists for which you want to remove scrobbles. Replace the existing array with your list of artists.
-Don't forget the '+'-symbol instead of a space.
-```
-const ArtistList = [
-  'Artist+1',
-  'Artist+2',
-  'Artist+3',
-  // Add more artists as needed
-];
-```
-Run the script:
-```
-npm start
-```
-The script will loop over the list of artists and remove their scrobbles from Last.fm.
+## Script Behavior
 
-### Notes
-This script uses the Axios library to make HTTP requests. Ensure that you have a stable internet connection while running the script.
+1. The script reads the list of artists from the `artists.txt` file.
 
-Be cautious when using this script, as it permanently removes scrobbles from your Last.fm account.
+2. For each artist in the list, it sends an HTTP POST request to Last.fm API to delete scrobbles for that artist.
 
-Respect Last.fm's terms of service and usage policies. Only use this script for your own scrobbles and avoid excessive or automated requests to their servers.
+3. If scrobbles are found for the artist, it will delete them and display the number of scrobbles deleted.
+
+4. If no scrobbles are found for the artist, it will log a message saying that there is nothing to delete.
+
+5. The script will pause for a random time between 2000 and 3000 milliseconds (2 to 3 seconds) after each request to prevent any potential rate limiting or ban from Last.fm.
+
+6. After processing all the artists, the script will display the total number of scrobbles deleted.
+
+7. If there are any errors during the process, the script will log the error details.
+
+## Important Note
+
+Please use this script responsibly and only delete scrobbles that you want to remove. Deleting scrobbles is irreversible, and the script should be used with caution.
+
