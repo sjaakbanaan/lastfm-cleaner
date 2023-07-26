@@ -55,7 +55,7 @@ async function makeRequests() {
       displayHorizontalLine();
       // Handle the response, errors can be found in response.data
       if (scrobblesDeleted > 0) {
-        console.log(`${scrobblesDeleted} scrobble${scrobblesDeleted > 0 ? 's' : ''} from ${artistCleaned} deleted ${greenText}succesfully!${resetText}`);
+        console.log(`${scrobblesDeleted} scrobble${scrobblesDeleted > 1 ? 's' : ''} from ${artistCleaned} deleted ${greenText}succesfully!${resetText}`);
       } else {
         console.log(`Deletion ${redText}failed${resetText} for ${artistCleaned}, nothing to delete.`);
       }
