@@ -1,18 +1,9 @@
+const fs = require('fs');
 const axios = require('axios');
 const dotenv = require('dotenv');
 
 // Load the environment variables from the .env file
 dotenv.config();
-
-// Bring on the shitty artists..
-const artistList = [
-  'Herman+van+Veen',
-  'K3',
-  'Juf+Roos',
-  'Kinderliedjes',
-  'Kinderen+voor+Kinderen',
-  // Add more artists as needed
-];
 
 async function makeRequests() {
   try {
@@ -20,8 +11,10 @@ async function makeRequests() {
     const csrfToken = process.env.CSRF_TOKEN;
     const sessionID = process.env.SESSION_ID;
 
-    for (const artist of artistList) {
+    const artistList = fs.readFileSync('artists.txt', 'utf8').trim().split('\n');
 
+    for (const artist of artistList) {
+      
       // Make an HTTP POST request to the current URL with the provided headers
       const response = await axios.post(
           `https://www.last.fm/user/${userName}/library/music/${artist}/+delete?is_modal=1`,
@@ -37,6 +30,9 @@ async function makeRequests() {
 
       // Handle the response here (you can log it or process the data), errors in: response.data
       console.log(`Scrobbles from ${artist.replace(/\+/g, ' ')} deleted succesfully!`);
+
+      // Pause for 5 seconds before making the next request
+      await new Promise((resolve) => setTimeout(resolve, 3000));
     }
     console.log('All requests completed successfully.');
   } catch (error) {
