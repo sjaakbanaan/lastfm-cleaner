@@ -65,7 +65,7 @@ async function makeRequests() {
       totalScrobblesDeleted += scrobblesDeleted;
 
       // Generate a random timeout value between 2000 and 3000 milliseconds
-      const randomTimeout = Math.floor(Math.random() * (3000 - 2000 + 1) + 2000);
+      const randomTimeout = Math.floor(Math.random() * (13000 - 12000 + 1) + 12000);
       // Pause a little before making the next request
       await new Promise((resolve) => setTimeout(resolve, randomTimeout));
     }
