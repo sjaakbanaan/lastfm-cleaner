@@ -54,7 +54,7 @@ npm run start
 
 4. If no scrobbles are found for the artist, it will log a message saying that there is nothing to delete.
 
-5. The script will pause for a random time between 2000 and 3000 milliseconds (2 to 3 seconds) after each request to prevent any potential rate limiting or ban from Last.fm.
+5. The script will pause for a random time between 12000 and 13000 milliseconds (12 to 13 seconds) after each request to prevent any potential rate limiting or ban from Last.fm.
 
 6. After processing all the artists, the script will display the total number of scrobbles deleted.
 
